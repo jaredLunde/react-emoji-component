@@ -1,0 +1,32 @@
+{
+  "name": "react-emoji-component",
+  "version": "0.1.0-alpha.0",
+  "description": "A component for converting unicode emojis to the open EmojiOne emoji set.",
+  "main": "cjs/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "esnext": "es/index.js",
+  "repository": "https://gtihub.com/jaredLunde/react-emoji-component",
+  "author": "Jared Lunde",
+  "license": "MIT",
+  "sideEffects": false,
+  "private": false,
+  "devDependencies": {
+    "@babel/node": "^7.0.0",
+    "@inst-app/babel-preset-esx": "^1.0.2",
+    "@inst-app/babel-preset-react": "^1.0.0",
+    "cross-env": "^5.2.0",
+    "css": "^2.2.4",
+    "emojione-assets": "^4.0.0",
+    "fs-extra": "^7.0.0",
+    "prettier": "^1.14.2",
+    "rimraf": "^2.6.2"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0",
+    "grapheme-splitter": "^1.0.3"
+  },
+  "scripts": {
+    "create-emoji-data": "node scripts/createEmojiData"
+  }
+}
