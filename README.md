@@ -1,3 +1,7 @@
+![rad](assets/png/128/1f91f-1f3fd.png)
+![can you believe it?](assets/png/128/1f635.png)
+![i can't!](assets/png/128/1f44c-1f3fe.png)
+
 # `react-emoji-component`
 `react-emoji-component` is the most lightweight and most versatile emoji library
 for using EmojiOne v4+ with React. You can count on this library to be
