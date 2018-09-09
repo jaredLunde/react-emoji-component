@@ -3,10 +3,10 @@
 ![i can't!](assets/png/128/1f44c-1f3fe.png)
 
 # `react-emoji-component`
-`react-emoji-component` is the most lightweight and most versatile library
-for using the open [EmojiOne](https://github.com/emojione/emojione) v4+ emoji set
-with React. You can count on this library to be up-to-date with the latest
-EmojiOne version.
+`react-emoji-component` is the most lightweight (32K gzipped) and most versatile
+library for using the open [EmojiOne](https://github.com/emojione/emojione) v4.0
+emoji set with React. You can count on this library to be up-to-date with the
+latest EmojiOne version.
 
 With this library you can easily use your own CDN provider to host emoji
 sprites and PNG files and customize emoji rendering. You can also switch between
