@@ -102,7 +102,7 @@ toEmojis('You 👏🏻 should 👏🏻 be 👏🏻 using 👏🏻 react-emoji-co
   - Children can be any object that React renders. Numbers, strings, other
     React elements, etc. The only children that are transformed by this component
     are string emojis.
-- render `function|React.component`
+- render `function|React.Component`
   - **default** [`Emoji`](#emoji)
   - This prop provides a component which is rendered each time an emoji is
     encountered in your child string. See [`Emoji`](#emoji) for prop types.
@@ -215,8 +215,11 @@ emoji set.
 This package comes with a binary for easily copying the EmojiOne assets to a
 local destination.
 
+See [2ality](http://2ality.com/2016/01/locally-installed-npm-executables.html)
+for more information about local node bins.
+
 ```sh
-npx copy-emoji-assets public/images/emojione --excludeSprites
+node_modules/.bin/copy-emoji-assets public/images/emojione --excludeSprites
 ```
 
 ------
