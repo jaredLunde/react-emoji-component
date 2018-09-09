@@ -63,7 +63,10 @@ emojiDataKeys.sort()
 let EMOJI_MAP = 'export const emojis = {\n'
 // array of categories for EMOJI_MAP pairing - a slight compression
 let CATEGORIES = 'export const categories = [\n'
+let SPRITE_SIZES = 'export const spriteSizes = [\n'
 const categoryCache = []
+const spriteSizeCache = {}
+const diversityMod = ['1f3fb', '1f3fc', '1f3fd', '1f3fe', '1f3ff',]
 
 for (let codePoint of emojiDataKeys) {
   const data = emojiData[codePoint]
@@ -71,7 +74,7 @@ for (let codePoint of emojiDataKeys) {
   EMOJI_MAP += `'${codePoint}',`
 
   const category =
-    codePoint.includes('-1f3f') || codePoint.startsWith('1f3f')
+    codePoint.includes('-1f3f') || diversityMod.includes(codePoint)
       ? 'diversity'
       : data.category
 
@@ -91,16 +94,33 @@ for (let codePoint of emojiDataKeys) {
     pos = EMOJI_SPRITE_24[`.emojione-24-${data.category}._${codePoint}`]
   }
 
+  let sizeCache = spriteSizeCache[categoryIdx]
+  if (sizeCache === void 0) {
+    spriteSizeCache[categoryIdx] = {rows: 1, cols: 1}
+    sizeCache = spriteSizeCache[categoryIdx]
+  }
+
+  sizeCache.cols = Math.max(pos[0], sizeCache.cols)
+
   if (pos[1] === 0) {
     pos = pos[0]
+  }
+  else {
+    sizeCache.rows = Math.max(pos[1], sizeCache.rows)
   }
 
   EMOJI_MAP += ` ${JSON.stringify(pos)}`
   EMOJI_MAP += `],\n`
 }
 
+for (let categoryID in spriteSizeCache) {
+  const sizeCache = spriteSizeCache[categoryID]
+  SPRITE_SIZES += `  [${sizeCache.cols + 1}, ${sizeCache.rows === 1 ? sizeCache.rows : sizeCache.rows + 1}],\n`
+}
+
 EMOJI_MAP += '}'
 CATEGORIES += ']'
+SPRITE_SIZES += ']'
 // console.log(EMOJI_MAP)
 // console.log(CATEGORIES)
 
@@ -109,13 +129,20 @@ const FILE = `// automatically generated, do not change manually
 // {
 //    unicode: [
 //      0: codePoint,
-//      1: categoryIdx // categories[emojis[codePoint].c],
+//      1: categoryID // categories[emojis[unicode][1]],
 //      2: positionInCategory (background-position: \${-1 * (iconSize + 1) * p}px),
 //    ]
 // }
 ${EMOJI_MAP}
 
+// ['people', ... // index === categoryID]
 ${CATEGORIES}
+
+// [
+//   [cols, rows]  // index === categoryID
+//                 // spriteSize = {width: cols * (iconSize + 1), height: rows * (iconSize + 1)}
+// ]
+${SPRITE_SIZES}
 `
 
 fs.writeFileSync(path.join(__dirname, '../src/data.js'), FILE)

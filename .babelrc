@@ -1,6 +1,6 @@
 {
   "presets": [
-    "@inst-app/react"
+    ["@inst-app/react", {"removePropTypes": false}]
   ],
   "env": {
     "cjs": {

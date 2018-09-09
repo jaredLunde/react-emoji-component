@@ -1,5 +1,7 @@
-export default from './Emojify'
+export default from './Emojis'
 export Emoji from './Emoji'
-export createEmojifyComponent from './createEmojifyComponent'
+export FindAndReplace from './FindAndReplace'
+
+export createEmojisComponent from './createEmojisComponent'
 export * as data from './data'
 export * from './utils'

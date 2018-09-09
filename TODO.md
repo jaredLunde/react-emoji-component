@@ -1,0 +1,1 @@
+- [ ] Figure out a way to compress the emoji data map further
