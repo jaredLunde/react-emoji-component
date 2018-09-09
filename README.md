@@ -35,21 +35,21 @@ toEmojis('You 👏🏻 should 👏🏻 be 👏🏻 using 👏🏻 react-emoji-co
   - This is the React component that comes out-of-the-box
 - [`<Emoji>`](#emoji)
   - This is the default component provided to the `<Emojis render={}/>` prop
-- [`createEmojisComponent()`](#createEmojisComponent)
+- [`createEmojisComponent()`](#createemojiscomponentoptions)
   - This function creates a new `<Emojis>` component based upon provided options.
     This is highly useful for configuring CDN paths and EmojiOne sprite-usage
     without having to declare those props each time you use the base `Emojis`
     component.
-- [`toEmojis()`](#toemojis)
+- [`toEmojis()`](#toemojisstring-options)
   - Parses a string and returns an array of React components with
     the proper emoji mappings
-- [`toImage()`](#toimage)
+- [`toImage()`](#toimageemoji-options)
   - Creates an img `src` string from Emoji data
-- [`toSprite()`](#tosprite)
+- [`toSprite()`](#tospriteemoji-options)
   - Creates a `style` object from Emoji data
-- [`supportsWebP()`](#supportsWebP)
+- [`supportsWebP()`](#supportswebp)
   - Returns `true` if the environment supports `image/webm` format
-- [`split()`](#split)
+- [`split()`](#splitstring)
   - The grapheme splitter used to split strings into constituent parts
 - `data`
   - This is the data file which contains a map of relevant emoji data. You could
