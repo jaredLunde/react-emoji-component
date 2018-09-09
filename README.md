@@ -162,7 +162,10 @@ prop.
 You can use this to create your own default `<Emojis>` component. See
 [Emojis](#emojis) for options.
 ```js
+import {data, createEmojisComponent} from 'react-emoji-component'
+
 const MyEmojis = createEmojisComponent({
+  data,
   size: 24,
   publicPath: '/path/to/emoji/sprites',
   useSprites: true
@@ -231,7 +234,7 @@ the files to the `image/webm` format. I'm merely giving hints here about how to
 use the `createEmojisComponent()` function to your ultimate advantage.
 
 ```js
-import {createEmojisComponent, supportsWebP} from 'react-emoji-component'
+import {createEmojisComponent, data, supportsWebP} from 'react-emoji-component'
 
 // use the built-in supportsWebP() function to determine if the browser
 // supports it
@@ -239,6 +242,7 @@ const useWebP = supportsWebP()
 
 // <img>
 const Emojis = createEmojisComponent({
+  data,
   publicPath: useWebP ? '/path/to/webp' : '/path/to/png',
   extension: useWebP ? '.webp' : '.png'
 })
@@ -249,9 +253,10 @@ const Emojis = createEmojisComponent({
 
 // <span> sprites
 const EmojiSprites = createEmojisComponent({
+  data,
   publicPath: useWebP ? '/path/to/webp/sprites' : '/path/to/png/sprites',
+  extension: useWebP ? '.webp' : 'png',
   useSprites: true,
-  extension: useWebP ? '.webp' : 'png'
 })
 
 <EmojiSprites size={24}>
