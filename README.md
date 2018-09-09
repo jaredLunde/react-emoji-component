@@ -16,7 +16,7 @@ This is something I've yet to see in other React EmojiOne libraries.
 - `Emojify` (`default` export)
   - This is the React component that comes out-of-the-box
 - `Emoji`
-  - This is the default component provided to the `<Emojify render={}/>` prop 
+  - This is the default component provided to the `<Emojify render={}/>` prop
 - `createEmojifier`
   - This function creates a new `<Emojify>` component based upon provided options.
     This is highly useful for configuring CDN paths and EmojiOne sprite-usage.
@@ -47,6 +47,12 @@ This is something I've yet to see in other React EmojiOne libraries.
         'activity'
       ]
     ```
+
+### react-emoji-component/assets
+- `copy`
+  - This is a utility for copying EmojiOne assets such as sprites and PNGs to
+    a local destination in your project. It is useful for self-hosting your
+    emoji set.
 
 ## Attributions
 - Emoji icons provided free by [EmojiOne](https://github.com/emojione/emojione)
