@@ -53,7 +53,7 @@ toEmojis('You 👏🏻 should 👏🏻 be 👏🏻 using 👏🏻 react-emoji-co
   - Creates an img `src` string from Emoji data
 - [`toSprite()`](#tospritecodepoint-options)
   - Creates a `style` object from Emoji data
-- [`emojiToCodePoints()`](#emojitocodepoints-emoji)
+- [`emojiToCodePoints()`](#emojitocodepointsemoji)
   - Creates a `-` delimited list of the codePoints found in the emoji without
     empty joiners
 - [`supportsWebP()`](#supportswebp)
