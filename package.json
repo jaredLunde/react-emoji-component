@@ -1,6 +1,6 @@
 {
   "name": "react-emoji-component",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "A component for converting unicode emojis to the open EmojiOne emoji set.",
   "main": "cjs/index.js",
   "module": "es/index.js",
