@@ -17,7 +17,7 @@ This is something I've yet to see in other React EmojiOne libraries.
 [Check out the demo on RunKit](https://runkit.com/jaredlunde/5b95a14e11e0460012e73c0e)
 
 ## Installation
-##### [react-emoji-component on NPM](https://www.npmjs.com/package/react-emoji-component) &bull; [react-emoji-component on Yarn](https://yarnpkg.com/en/package/react-emoji-component)
+##### [react-emoji-component on Yarn](https://yarnpkg.com/en/package/react-emoji-component) &bull; [react-emoji-component on NPM](https://www.npmjs.com/package/react-emoji-component)
 `yarn add react-emoji-component` or `npm i react-emoji-component`
 
 ## Basic Usage
