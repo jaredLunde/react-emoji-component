@@ -3,7 +3,7 @@
 ![i can't!](assets/png/128/1f44c-1f3fe.png)
 
 # `react-emoji-component`
-`react-emoji-component` is the most lightweight (32K gzipped) and most versatile
+`react-emoji-component` is the most lightweight (~25KB gzipped) and most versatile
 library for using the open [EmojiOne](https://github.com/emojione/emojione) v4.0
 emoji set with React. You can count on this library to be up-to-date with the
 latest EmojiOne version.
@@ -69,10 +69,10 @@ toEmojis('You 👏🏻 should 👏🏻 be 👏🏻 using 👏🏻 react-emoji-co
   - Children can be any object that React renders. Numbers, strings, other
     React elements, etc. The only children that are transformed by this component
     are string emojis.
-- render `function|React.Component`
+- render `function`
   - **default** [`Emoji`](#emoji)
-  - This prop provides a component which is rendered each time an emoji is
-    encountered in your child string. See [`Emoji`](#emoji) for prop types.
+  - This prop provides a functional component which is rendered each time an emoji
+    is encountered in your child string. See [`Emoji`](#emoji) for prop types.
 - size `number`
   - **default** `16`
   - This is the width and height you want your emoji to render to. With the free
@@ -104,22 +104,21 @@ prop.
 #### Props
 - emoji `string`
   - This is the untransformed string emoji that was found in your child text.
-  - **required**
-- size `number`
-  - See [Emojis](#emojis)
-- publicPath `string`
-  - See [Emojis](#emojis)
-- hiDPI `bool`
-  - See [Emojis](#emojis)
-- extension `string`
-  - See [Emojis](#emojis)
-- useSprites `bool`
-  - **default** `false`
-  - See [Emojis](#emojis)
-- style `object`
-  - **default** `undefined`
-  - An optional style prop that gets assigned to the rendered style prop.
-
+- codePoint `string`
+  - This is the code point for the emoji assigned to the emoji data mapping,
+    and PNGs
+- options `object`
+  - size `number`
+    - See [Emojis](#emojis)
+  - publicPath `string`
+    - See [Emojis](#emojis)
+  - hiDPI `bool`
+    - See [Emojis](#emojis)
+  - extension `string`
+    - See [Emojis](#emojis)
+  - useSprites `bool`
+    - **default** `false`
+    - See [Emojis](#emojis)
 
 ### `createEmojisComponent(options)`
 You can use this to create your own default `<Emojis>` component. See

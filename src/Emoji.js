@@ -13,47 +13,40 @@ const defaultImgStyle = {
 export default function Emoji ({
   emoji,
   codePoint,
-  size = 16,
   style,
-  publicPath,
-  hiDPI,
-  extension,
-  useSprites = false,
+  options,
   ...props
 }) {
-  const opt = {
-    size,
-    style,
-    publicPath,
-    hiDPI,
-    extension
-  }
-
-  return useSprites === true
-    ? <span
-        role='img'
-        alt={emoji}
-        style={toSprite(codePoint, opt)}
-        {...props}
-      />
-    : <img
-        width={size}
-        height={size}
-        alt={emoji}
-        src={toImage(codePoint, opt)}
-        style={style ? {...defaultImgStyle, ...style} : defaultImgStyle}
-        {...props}
-      />
+  return (
+    options.useSprites === true
+      ? <span
+          role='img'
+          alt={emoji}
+          style={Object.assign(toSprite(codePoint, options), style)}
+          {...props}
+        />
+      : <img
+          width={options.size}
+          height={options.size}
+          alt={emoji}
+          src={toImage(codePoint, options)}
+          style={style ? Object.assign({}, defaultImgStyle, style) : defaultImgStyle}
+          {...props}
+        />
+  )
 }
 
 
 if (__DEV__) {
   Emoji.propTypes = {
     emoji: PropTypes.string.isRequired,
-    size: PropTypes.number,
-    publicPath: PropTypes.string,
-    hiDPI: PropTypes.bool,
-    extension: PropTypes.string,
-    useSprites: PropTypes.bool
+    codePoint: PropTypes.string.isRequired,
+    options: PropTypes.shape({
+      size: PropTypes.number,
+      publicPath: PropTypes.string,
+      hiDPI: PropTypes.bool,
+      extension: PropTypes.string,
+      useSprites: PropTypes.bool
+    }).isRequired
   }
 }

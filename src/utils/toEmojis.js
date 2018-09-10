@@ -6,7 +6,20 @@ import {emojis} from '../data'
 import split from './split'
 
 
-export default function toEmojis (string, {render = Emoji, ...props}) {
+export default function toEmojis (
+  string, {
+    render = Emoji,
+    // options
+    size = 16,
+    publicPath,
+    hiDPI,
+    extension,
+    useSprites = false,
+    // everything else is normal props
+    ...props
+  }
+) {
+  const options = {size, publicPath, hiDPI, extension, useSprites}
   const converted = []
   let strings = []
   const chars = split(string)
@@ -25,9 +38,10 @@ export default function toEmojis (string, {render = Emoji, ...props}) {
       // can safely mutate here
       props.emoji = char
       props.codePoint = codePoint
-      props.key = `${char}-${i}`
+      props.key = `${codePoint}-${i}`
+      props.options = options
       // renders the emoji in React component
-      converted.push(React.createElement(render, props))
+      converted.push(render(props))
     }
     else {
       strings.push(char)

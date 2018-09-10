@@ -20,8 +20,7 @@ export default function toSprite (
     size = 16,
     publicPath = DEFAULT_PUBLIC_PATH,
     hiDPI = false,
-    extension = '.png',
-    style,
+    extension = '.png'
   }
 ) {
   const [categoryID, col, row] = data.emojis[codePoint]
@@ -51,7 +50,8 @@ export default function toSprite (
   const bgWidth = getSize(spriteCols, scaleSize)
   const backgroundSize = `${bgWidth} ${bgHeight}`
   const qs = publicPath === DEFAULT_PUBLIC_PATH ? '?raw=true' : ''
-  const styles = {
+
+  return {
     width: scaleSize,
     height: scaleSize,
     display: 'inline-block',
@@ -67,6 +67,4 @@ export default function toSprite (
     backgroundPosition,
     backgroundRepeat: 'no-repeat'
   }
-
-  return style ? Object.assign(styles, style) : styles
 }
