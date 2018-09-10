@@ -3,7 +3,7 @@
 ![i can't!](assets/png/128/1f44c-1f3fe.png)
 
 # `react-emoji-component`
-`react-emoji-component` is the most lightweight ([~25KB gzipped](https://bundlephobia.com/result?p=react-emoji-component@4.0.1)) and most versatile
+`react-emoji-component` is the most lightweight ([~24kB gzipped](https://bundlephobia.com/result?p=react-emoji-component)) and most versatile
 library for using the open [EmojiOne](https://github.com/emojione/emojione) v4.0
 emoji set with React. You can count on this library to be up-to-date with the
 latest EmojiOne version.
