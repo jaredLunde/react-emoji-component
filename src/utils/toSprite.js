@@ -49,7 +49,7 @@ export default function toSprite (
   const bgHeight = getSize(spriteRows, scaleSize)
   const bgWidth = getSize(spriteCols, scaleSize)
   const backgroundSize = `${bgWidth} ${bgHeight}`
-  const qs = publicPath === DEFAULT_PUBLIC_PATH ? '?raw=true' : ''
+  const qs = publicPath.includes('github.com') ? '?raw=true' : ''
 
   return {
     width: scaleSize,
