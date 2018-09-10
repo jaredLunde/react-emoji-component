@@ -12,7 +12,7 @@ const defaultImgStyle = {
 
 export default function Emoji ({
   emoji,
-  data,
+  codePoint,
   size = 16,
   style,
   publicPath,
@@ -22,7 +22,6 @@ export default function Emoji ({
   ...props
 }) {
   const opt = {
-    data,
     size,
     style,
     publicPath,
@@ -34,14 +33,14 @@ export default function Emoji ({
     ? <span
         role='img'
         alt={emoji}
-        style={toSprite(emoji, opt)}
+        style={toSprite(codePoint, opt)}
         {...props}
       />
     : <img
         width={size}
         height={size}
         alt={emoji}
-        src={toImage(emoji, opt)}
+        src={toImage(codePoint, opt)}
         style={style ? {...defaultImgStyle, ...style} : defaultImgStyle}
         {...props}
       />
@@ -51,11 +50,6 @@ export default function Emoji ({
 if (__DEV__) {
   Emoji.propTypes = {
     emoji: PropTypes.string.isRequired,
-    data: PropTypes.shape({
-      emojis: PropTypes.object,
-      categories: PropTypes.arrayOf(PropTypes.string),
-      spriteSizes: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
-    }).isRequired,
     size: PropTypes.number,
     publicPath: PropTypes.string,
     hiDPI: PropTypes.bool,

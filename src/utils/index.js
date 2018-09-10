@@ -1,3 +1,4 @@
+export emojiToCodePoints from './emojiToCodePoints'
 export split from './split'
 export supportsWebP from './supportsWebP'
 export toEmojis from './toEmojis'

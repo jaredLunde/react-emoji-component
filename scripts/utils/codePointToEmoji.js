@@ -2,7 +2,7 @@
 // for converting unicode code points and code pairs to their respective
 // characters
 module.exports = function codePointToString (unicode) {
-  // > codePointToString('1f3b1')
+  // > codePointToEmoji('1f3b1')
   // < "🎱"
   if (unicode.indexOf('-') > -1) {
     const parts = []

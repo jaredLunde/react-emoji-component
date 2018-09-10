@@ -70,8 +70,7 @@ const diversityMod = ['1f3fb', '1f3fc', '1f3fd', '1f3fe', '1f3ff',]
 
 for (let codePoint of emojiDataKeys) {
   const data = emojiData[codePoint]
-  EMOJI_MAP += `  '${utils.codePointToString(codePoint)}': [`
-  EMOJI_MAP += `'${codePoint}',`
+  EMOJI_MAP += `  '${codePoint}': [`
 
   const category =
     codePoint.includes('-1f3f') || diversityMod.includes(codePoint)
@@ -86,7 +85,7 @@ for (let codePoint of emojiDataKeys) {
     CATEGORIES += `  '${category}',\n`
   }
 
-  EMOJI_MAP += ` ${categoryIdx},`
+  EMOJI_MAP += `${categoryIdx}, `
 
   let pos = EMOJI_SPRITE_24[`.emojione-24-${category}._${codePoint}`]
 
@@ -101,15 +100,13 @@ for (let codePoint of emojiDataKeys) {
   }
 
   sizeCache.cols = Math.max(pos[0], sizeCache.cols)
+  EMOJI_MAP += pos[0]
 
-  if (pos[1] === 0) {
-    pos = pos[0]
-  }
-  else {
+  if (pos[1] > 0) {
+    EMOJI_MAP += `, ${pos[1]}`
     sizeCache.rows = Math.max(pos[1], sizeCache.rows)
   }
 
-  EMOJI_MAP += ` ${JSON.stringify(pos)}`
   EMOJI_MAP += `],\n`
 }
 
@@ -127,10 +124,10 @@ SPRITE_SIZES += ']'
 const FILE = `// automatically generated, do not change manually
 //
 // {
-//    unicode: [
-//      0: codePoint,
-//      1: categoryID // categories[emojis[unicode][1]],
-//      2: positionInCategory (background-position: \${-1 * (iconSize + 1) * p}px),
+//    codePoint: [
+//      0: categoryID // categories[emojis[unicode][1]],
+//      1: spriteColumnNumber,
+//      2: spriteRowNumber,
 //    ]
 // }
 ${EMOJI_MAP}

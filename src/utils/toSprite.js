@@ -1,3 +1,4 @@
+import * as data from '../data'
 import getIconSize from './getSize'
 
 
@@ -13,9 +14,8 @@ function getSize (x, iconSize) {
 }
 
 export default function toSprite (
-  unicode,
+  codePoint,
   {
-    data,
     emoji,
     size = 16,
     publicPath = DEFAULT_PUBLIC_PATH,
@@ -24,7 +24,7 @@ export default function toSprite (
     style,
   }
 ) {
-  const [_, categoryID, bgPos] = data.emojis[unicode]
+  const [categoryID, col, row] = data.emojis[codePoint]
   const category = data.categories[categoryID]
   const [spriteCols, spriteRows] = data.spriteSizes[categoryID]
 
@@ -43,9 +43,9 @@ export default function toSprite (
   }
   const scaleSize = (size / (iconSize - 1)) * (iconSize - 1)
   const backgroundPosition =
-    Array.isArray(bgPos)
-      ? `${getPos(bgPos[0], scaleSize)} ${getPos(bgPos[1], scaleSize)}`
-      : `${getPos(bgPos, scaleSize)} 0`
+    row === void 0
+      ? `${getPos(col, scaleSize)} 0`
+      : `${getPos(col, scaleSize)} ${getPos(row, scaleSize)}`
   // const backgroundSize = hiDPI === true ? '50%' : void 0
   const bgHeight = getSize(spriteRows, scaleSize)
   const bgWidth = getSize(spriteCols, scaleSize)

@@ -1,6 +1,6 @@
 import React from 'react'
 import createEmojisComponent from './createEmojisComponent'
-import * as data from './data'
+import emptyObj from 'empty/object'
 
 
-export default createEmojisComponent({data})
+export default createEmojisComponent(emptyObj)

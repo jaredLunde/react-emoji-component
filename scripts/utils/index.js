@@ -1,4 +1,4 @@
 module.exports = {
-  codePointToString: require('./codePointToString'),
+  codePointToEmoji: require('./codePointToEmoji'),
   strkey: require('./strkey')
 }

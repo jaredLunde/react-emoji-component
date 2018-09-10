@@ -1,19 +1,18 @@
 import getSize from './getSize'
+import emojiToCodePoints from './emojiToCodePoints'
 
 
 const sizes = [32, 64, 128]
 
 export default function toImage (
-  unicode,
+  codePoint,
   {
-    data,
     size = 16,
     publicPath = 'https://cdn.jsdelivr.net/emojione/assets/4.0/png/',
     hiDPI = false,
     extension = '.png'
   }
 ) {
-  const [codePoint] = data.emojis[unicode]
   size = parseInt(size)
 
   if (hiDPI === true) {

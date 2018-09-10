@@ -5,7 +5,6 @@ import FindAndReplace from './FindAndReplace'
 
 
 export default function createEmojisComponent ({
-  data,
   publicPath,
   useSprites,
   hiDPI,
@@ -13,16 +12,6 @@ export default function createEmojisComponent ({
   extension,
   render,
 }) {
-  if (__DEV__) {
-    if (data === void 0) {
-      throw new Error(
-        `Function 'createEmojisComponent()' requires a 'data' option is set.` +
-        `To use the default dataset, you must \`import {data} from ` +
-        `'react-emoji-component'\` and provide it as the 'data' option.`
-      )
-    }
-  }
-
   if (publicPath) {
     publicPath = publicPath.endsWith('/') === false ? `${publicPath}/` : publicPath
   }
@@ -34,7 +23,6 @@ export default function createEmojisComponent ({
           render,
           useSprites,
           hiDPI,
-          data,
           publicPath,
           size,
           extension,

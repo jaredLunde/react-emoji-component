@@ -29,8 +29,8 @@ import Emojis from 'react-emoji-component'
 </Emojis>
 // ['You', <img key=..>, 'should', <img key=..>, 'be', <img key=..>, 'using', <img key=..>, <code>react-emoji-component</code>]
 
-import {data, toEmojis} from 'react-emoji-component'
-toEmojis('You 👏🏻 should 👏🏻 be 👏🏻 using 👏🏻 react-emoji-component', {data, size: 24})
+import {toEmojis} from 'react-emoji-component'
+toEmojis('You 👏🏻 should 👏🏻 be 👏🏻 using 👏🏻 react-emoji-component', {size: 24})
 // ['You', <img key=..>, 'should', <img key=..>, 'be', <img key=..>, 'using', <img key=..>, 'react-emoji-component']
 ```
 
@@ -47,54 +47,17 @@ toEmojis('You 👏🏻 should 👏🏻 be 👏🏻 using 👏🏻 react-emoji-co
 - [`toEmojis()`](#toemojisstring-options)
   - Parses a string and returns an array of React components with
     the proper emoji mappings
-- [`toImage()`](#toimageemoji-options)
+- [`toImage()`](#toimagecodepoint-options)
   - Creates an img `src` string from Emoji data
-- [`toSprite()`](#tospriteemoji-options)
+- [`toSprite()`](#tospritecodepoint-options)
   - Creates a `style` object from Emoji data
+- [`emojiToCodePoints()`](#emojitocodepoints-emoji)
+  - Creates a `-` delimited list of the codePoints found in the emoji without
+    empty joiners
 - [`supportsWebP()`](#supportswebp)
   - Returns `true` if the environment supports `image/webm` format
 - [`split()`](#splitstring)
   - The grapheme splitter used to split strings into constituent parts
-- `data`
-  - This is the data file which contains a map of relevant emoji data. You could
-    for example create your own data file which included things like
-    `:short_names:` and `:)` ascii mappings which would be passed to
-    the `<Emojis render={}>` render function.
-    ```js
-      emojis: {
-        ...
-        🦃: [codePoints, categoryID, spriteColumnAndRowIndex],
-        ...
-      }
-    ```
-    ```js
-      categories: [
-        'symbols',  // ID = 0
-        'regional', // ID = 1 ...
-        'flags',
-        'travel',
-        'people',
-        'nature',
-        'objects',
-        'food',
-        'diversity',
-        'activity'
-      ]
-    ```
-    ```js
-    spriteSizes: [
-      [291, 1], // [cols, rows]
-      [26, 1],
-      [269, 1],
-      [123, 1],
-      [393, 1],
-      [178, 1],
-      [198, 1],
-      [106, 1],
-      [268, 33],
-      [106, 1],
-    ]
-    ```
 
 ------
 
@@ -153,10 +116,6 @@ prop.
 - useSprites `bool`
   - **default** `false`
   - See [Emojis](#emojis)
-- data `object`
-  - **default** `react-emoji-component/data`
-  - This is the data map used to determine emoji code points and
-    sprite background positions
 - style `object`
   - **default** `undefined`
   - An optional style prop that gets assigned to the rendered style prop.
@@ -166,10 +125,9 @@ prop.
 You can use this to create your own default `<Emojis>` component. See
 [Emojis](#emojis) for options.
 ```js
-import {data, createEmojisComponent} from 'react-emoji-component'
+import {createEmojisComponent} from 'react-emoji-component'
 
 const MyEmojis = createEmojisComponent({
-  data,
   size: 24,
   publicPath: '/path/to/emoji/sprites',
   useSprites: true
@@ -180,16 +138,24 @@ const MyEmojis = createEmojisComponent({
 Returns an `Array` of React elements with string emojis replaced by `Emoji` React
 components
 ```js
-import {data, toEmojis} from 'react-emoji-component'
-toEmojis('You 👏🏻 should 👏🏻 be 👏🏻 using 👏🏻 react-emoji-component', {data, size: 24})
+import {toEmojis} from 'react-emoji-component'
+toEmojis('You 👏🏻 should 👏🏻 be 👏🏻 using 👏🏻 react-emoji-component', {size: 24})
 // ['You', <img key=..>, 'should', <img key=..>, 'be', <img key=..>, 'using', <img key=..>, 'react-emoji-component']
 ```
 
-### `toImage(emoji, options)`
-Returns an img `src` string for the file associated with the emoji
+### `toImage(codePoint, options)`
+Returns an img `src` string for the file associated with the codePoint/emoji
 
-### `toSprite(emoji, options)`
-Returns a `style` object for the sprite associated with the emoji
+### `toSprite(codePoint, options)`
+Returns a `style` object for the sprite associated with the codePoint/emoji
+
+### `emojiToCodePoints(emoji)`
+Creates a `-` delimited list of the codePoints found in the emoji without
+empty joiners.
+```js
+emojiToCodePoints('👨🏾‍🚒')
+// "1f468-1f3fe-1f692"
+```
 
 ### `supportsWebP()`
 Returns `true` if the current environment supports the `image/webm` format
@@ -238,7 +204,7 @@ the files to the `image/webm` format. I'm merely giving hints here about how to
 use the `createEmojisComponent()` function to your ultimate advantage.
 
 ```js
-import {createEmojisComponent, data, supportsWebP} from 'react-emoji-component'
+import {createEmojisComponent, supportsWebP} from 'react-emoji-component'
 
 // use the built-in supportsWebP() function to determine if the browser
 // supports it
@@ -246,7 +212,6 @@ const useWebP = supportsWebP()
 
 // <img>
 const Emojis = createEmojisComponent({
-  data,
   publicPath: useWebP ? '/path/to/webp' : '/path/to/png',
   extension: useWebP ? '.webp' : '.png'
 })
@@ -257,7 +222,6 @@ const Emojis = createEmojisComponent({
 
 // <span> sprites
 const EmojiSprites = createEmojisComponent({
-  data,
   publicPath: useWebP ? '/path/to/webp/sprites' : '/path/to/png/sprites',
   extension: useWebP ? '.webp' : 'png',
   useSprites: true,

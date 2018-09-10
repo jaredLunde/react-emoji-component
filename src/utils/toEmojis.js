@@ -1,17 +1,20 @@
 import React from 'react'
 import GraphemeSplitter from 'grapheme-splitter'
+import emojiToCodePoints from './emojiToCodePoints'
 import Emoji from '../Emoji'
+import {emojis} from '../data'
 import split from './split'
 
 
-export default function toEmojis (string, {render = Emoji, data, ...props}) {
+export default function toEmojis (string, {render = Emoji, ...props}) {
   const converted = []
   let strings = []
   const chars = split(string)
 
   for (let i = 0; i < chars.length; i++) {
     const char = chars[i]
-    let emoji = data.emojis[char]
+    const codePoint = emojiToCodePoints(char)
+    let emoji = emojis[codePoint]
 
     if (emoji !== void 0) {
       if (strings.length > 0) {
@@ -21,7 +24,7 @@ export default function toEmojis (string, {render = Emoji, data, ...props}) {
 
       // can safely mutate here
       props.emoji = char
-      props.data = data
+      props.codePoint = codePoint
       props.key = `${char}-${i}`
       // renders the emoji in React component
       converted.push(React.createElement(render, props))
