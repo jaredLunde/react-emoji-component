@@ -29,16 +29,18 @@ import Emojis from 'react-emoji-component'
 </Emojis>
 // ['You', <img key=..>, 'should', <img key=..>, 'be', <img key=..>, 'using', <img key=..>, <code>react-emoji-component</code>]
 
+
 import {toEmojis} from 'react-emoji-component'
+
 toEmojis('You 👏🏻 should 👏🏻 be 👏🏻 using 👏🏻 react-emoji-component', {size: 24})
 // ['You', <img key=..>, 'should', <img key=..>, 'be', <img key=..>, 'using', <img key=..>, 'react-emoji-component']
 ```
 
 ## Exports
 - [`<Emojis>`](#emojis) (`default` export)
-  - This is the React component that comes out-of-the-box
+  - A component which transform the emoji strings in its children to EmojiOne icons
 - [`<Emoji>`](#emoji)
-  - This is the default component provided to the `<Emojis render={}/>` prop
+  - This is the default component provided silently by default to the `<Emojis render={}/>` prop. It does the actual rendering of the icons.
 - [`createEmojisComponent()`](#createemojiscomponentoptions)
   - This function creates a new `<Emojis>` component based upon provided options.
     This is highly useful for configuring CDN paths and EmojiOne sprite-usage
