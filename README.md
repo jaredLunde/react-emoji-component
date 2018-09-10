@@ -171,6 +171,12 @@ Splits a string by its graphemes and returns an `Array` of constituent character
 This is a utility for copying EmojiOne assets such as sprites and PNGs to
 a local destination in your project. It is useful for self-hosting your
 emoji set.
+```js
+import {copy} from 'react-emoji-component/assets'
+
+copy('/path/to/your/public/files', {excludeSprites: true})
+```
+
 
 ##### Options
 - excludePNG `bool`
