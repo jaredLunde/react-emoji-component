@@ -18,7 +18,7 @@ This is something I've yet to see in other React EmojiOne libraries.
 
 ## Examples
 [Check out this example](examples/every-emoji) on your local machine and be
-mesmerized as every emoji known to man loads effortless on a single page.
+mesmerized as every emoji known to man or woman loads effortlessly on a single page.
 
 ![react-emoji-component example gif](http://g.recordit.co/QQlwUNMcOP.gif)
 
