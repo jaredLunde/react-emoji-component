@@ -18,9 +18,10 @@ This is something I've yet to see in other React EmojiOne libraries.
 
 ## Examples
 [Check out this example](examples/every-emoji) on your local machine and be
-mesmerized as every emoji known to man or woman loads effortlessly on a single page.
+mesmerized as every emoji known to 🙋‍♂ or 👩🏼‍💼 loads effortlessly on a single
+page.
 
-![react-emoji-component example gif](http://g.recordit.co/QQlwUNMcOP.gif)
+![react-emoji-component example gif](http://g.recordit.co/Pp8oW7eDk6.gif)
 
 ## Installation
 ##### [react-emoji-component on Yarn](https://yarnpkg.com/en/package/react-emoji-component) &bull; [react-emoji-component on NPM](https://www.npmjs.com/package/react-emoji-component)
@@ -44,10 +45,17 @@ toEmojis('You 👏🏻 should 👏🏻 be 👏🏻 using 👏🏻 react-emoji-co
 
 ## Exports
 - [`<Emojis>`](#emojis) (`default` export)
-  - A component which transform the emoji strings in its children to EmojiOne icons
+  - A component which transforms all of the emoji strings in its children to
+    EmojiOne icons
 - [`<Emoji>`](#emoji)
-  - This is the default component provided silently by default to the `<Emojis render={}/>` prop. It does the actual rendering of the icons.
-- [`createEmojisComponent()`](#createemojiscomponentoptions)
+  - This is the default emoji renderer provided silently by default to the
+    `<Emojis render={}/>` prop. It renders `<img>` elements and the emoji
+    character as alt-text to maintain copy-ability when highlighting text.
+- [`<EmojiSprite>`](#emojisprite)
+  - This is an alternative emoji renderer for the `<Emojis render={}/>` prop.
+    This component uses `<span role='img'>` elements with sprites in the
+    `background-image` property.
+[`createEmojisComponent()`](#createemojiscomponentoptions)
   - This function creates a new `<Emojis>` component based upon provided options.
     This is highly useful for configuring CDN paths and EmojiOne sprite-usage
     without having to declare those props each time you use the base `Emojis`
@@ -85,14 +93,10 @@ toEmojis('You 👏🏻 should 👏🏻 be 👏🏻 using 👏🏻 react-emoji-co
   - **default** `16`
   - This is the width and height you want your emoji to render to. With the free
     license for EmojiOne, the max size you can render is `128px` without blur.
-- hiDPI `bool`
+- hiDpi `bool`
   - **default** `false`
-  - By setting `hiDPI` to `true`, you will create more crisp emojis for high DPI
+  - By setting `hiDpi` to `true`, you will create more crisp emojis for high DPI
     devices with the tradeoff that the image transfer size will be larger.
-- useSprites `bool`
-  - **default** `false`
-  - When you set `useSprites` to `true`, the emoji renderer will use a `<span>`
-    and `background-image` along with a CSS sprite instead of an `<img>` element
 - publicPath `string`
   - **default**
     - Images: `https://cdn.jsdelivr.net/emojione/assets/4.0/png/`
@@ -106,7 +110,8 @@ toEmojis('You 👏🏻 should 👏🏻 be 👏🏻 using 👏🏻 react-emoji-co
     something like JPEG-XR or WebP instead of PNG.
 
 ### `<Emoji>`
-This component is automatically provided to `<Emojis>` by default as its render
+This emoji renderer will create an `<img>` element linked to the proper EmojiOne
+emoji image. It is automatically provided to `<Emojis>` by default as its render
 prop.
 
 #### Props
@@ -120,24 +125,38 @@ prop.
     - See [Emojis](#emojis)
   - publicPath `string`
     - See [Emojis](#emojis)
-  - hiDPI `bool`
+  - hiDpi `bool`
     - See [Emojis](#emojis)
   - extension `string`
     - See [Emojis](#emojis)
-  - useSprites `bool`
-    - **default** `false`
-    - See [Emojis](#emojis)
+
+### `<EmojiSprite>`
+This emoji renderer will use a `<span>` and `background-image` along with a
+CSS sprite instead of an `<img>` element. Its options are the same as
+[Emoji](#emoji).
+
+```js
+import {Emojis, EmojiSprite} from 'react-emoji-component'
+
+<Emojis render={EmojiSprite} size={48}>
+  Seriously! You 👏🏻 should 👏🏻 be 👏🏻 using 👏🏻 <code>react-emoji-component</code>
+</Emojis>
+```
+
+See [createEmojisComponent](#createemojiscomponentoptions) below
+for an example of how to create your own `<Emojis>` component with the `EmojiSprite`
+as the default renderer.
 
 ### `createEmojisComponent(options)`
 You can use this to create your own default `<Emojis>` component. See
 [Emojis](#emojis) for options.
 ```js
-import {createEmojisComponent} from 'react-emoji-component'
+import {createEmojisComponent, EmojiSprite} from 'react-emoji-component'
 
 const MyEmojis = createEmojisComponent({
   size: 24,
   publicPath: '/path/to/emoji/sprites',
-  useSprites: true
+  render: EmojiSprite
 })
 ```
 
@@ -217,7 +236,7 @@ the files to the `image/webm` format. I'm merely giving hints here about how to
 use the `createEmojisComponent()` function to your ultimate advantage.
 
 ```js
-import {createEmojisComponent, supportsWebP} from 'react-emoji-component'
+import {createEmojisComponent, EmojiSprite, supportsWebP} from 'react-emoji-component'
 
 // use the built-in supportsWebP() function to determine if the browser
 // supports it
@@ -234,15 +253,15 @@ const Emojis = createEmojisComponent({
 </Emojis>
 
 // <span> sprites
-const EmojiSprites = createEmojisComponent({
+const Emojis = createEmojisComponent({
   publicPath: useWebP ? '/path/to/webp/sprites' : '/path/to/png/sprites',
   extension: useWebP ? '.webp' : 'png',
-  useSprites: true,
+  render: EmojiSprite,
 })
 
-<EmojiSprites size={24}>
+<Emojis size={24}>
   We 👏 have 👏 got 👏 WebP 👏 files
-</EmojiSprites>
+</Emojis>
 ```
 
 

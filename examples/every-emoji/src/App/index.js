@@ -1,12 +1,12 @@
 import React from 'react'
-import Emojis from 'react-emoji-component'
+import Emojis, {EmojiSprite} from 'react-emoji-component'
 
 
 export default class App extends React.PureComponent {
   state = {
     useSprites: true,
     size: 32,
-    hiDPI: false,
+    hiDpi: false,
   }
 
   render () {
@@ -60,8 +60,8 @@ export default class App extends React.PureComponent {
                 High DPI?<br/>
                 <input
                   type='checkbox'
-                  defaultChecked={this.state.hiDPI}
-                  onChange={e => this.setState({hiDPI: e.target.checked})}
+                  defaultChecked={this.state.hiDpi}
+                  onChange={e => this.setState({hiDpi: e.target.checked})}
                 />
               </span>
             </div>
@@ -69,8 +69,8 @@ export default class App extends React.PureComponent {
 
           <Emojis
             size={this.state.size}
-            useSprites={this.state.useSprites}
-            hiDPI={this.state.hiDPI}
+            render={this.state.useSprites ? EmojiSprite : void 0}
+            hiDpi={this.state.hiDpi}
           >
             <div>
               <h2>Smileys</h2>

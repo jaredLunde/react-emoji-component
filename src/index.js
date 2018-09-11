@@ -1,7 +1,7 @@
 export default from './Emojis'
 export Emoji from './Emoji'
-export FindAndReplace from './FindAndReplace'
+export EmojiSprite from './EmojiSprite'
+export walk from './walk'
 
 export createEmojisComponent from './createEmojisComponent'
-export * as data from './data'
 export * from './utils'

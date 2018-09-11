@@ -6,7 +6,8 @@ import {emojis} from '../data'
 import split from './split'
 
 
-const skipRe = /[a-zA-Z0-9\s]/
+// for skipping all latin characters
+const skipRe = /[\p{L}\s]/
 
 export default function toEmojis (
   string, {
@@ -14,14 +15,13 @@ export default function toEmojis (
     // options
     size = 16,
     publicPath,
-    hiDPI,
+    hiDpi,
     extension,
-    useSprites = false,
     // everything else is normal props
     ...props
   }
 ) {
-  const options = {size, publicPath, hiDPI, extension, useSprites}
+  const options = {size, publicPath, hiDpi, extension}
   let strings = ''
   const converted = []
   const chars = split(string)
@@ -30,6 +30,7 @@ export default function toEmojis (
     const char = chars[i]
 
     if (char.match(skipRe)) {
+      // skips stuff we patently know are not emojis
       strings += char
     }
     else {

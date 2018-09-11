@@ -1,39 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {toSprite, toImage} from './utils'
+import isChrome from './utils/isChrome'
+import toImage from './utils/toImage'
 
 
 const defaultImgStyle = {
   contain: 'strict',
-  display: 'inline-block',
   verticalAlign: 'middle',
-  position: 'relative'
+  imageRendering: isChrome === true ? '-webkit-optimize-contrast' : 'crisp-edges'
 }
 
-export default function Emoji ({
-  emoji,
-  codePoint,
-  style,
-  options,
-  ...props
-}) {
-  return (
-    options.useSprites === true
-      ? <span
-          role='img'
-          alt={emoji}
-          style={Object.assign(toSprite(codePoint, options), style)}
-          {...props}
-        />
-      : <img
-          width={options.size}
-          height={options.size}
-          alt={emoji}
-          src={toImage(codePoint, options)}
-          style={style ? Object.assign({}, defaultImgStyle, style) : defaultImgStyle}
-          {...props}
-        />
-  )
+export default function Emoji ({emoji, codePoint, style, options, ...props}) {
+  props.width = options.size
+  props.height = options.size
+  props.style = style === void 0 ? defaultImgStyle : Object.assign({}, defaultImgStyle, style)
+  props.src = toImage(codePoint, options)
+  props.alt = emoji
+  return React.createElement('img', props)
 }
 
 
@@ -43,10 +26,9 @@ if (__DEV__) {
     codePoint: PropTypes.string.isRequired,
     options: PropTypes.shape({
       size: PropTypes.number,
+      hiDpi: PropTypes.bool,
       publicPath: PropTypes.string,
-      hiDPI: PropTypes.bool,
-      extension: PropTypes.string,
-      useSprites: PropTypes.bool
+      extension: PropTypes.string
     }).isRequired
   }
 }

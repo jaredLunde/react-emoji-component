@@ -1,9 +1,9 @@
 import * as data from '../data'
-import getIconSize from './getSize'
+import isChrome from './isChrome'
 
 
 const DEFAULT_PUBLIC_PATH = 'https://github.com/jaredLunde/react-emoji-component/blob/master/assets/sprites/'
-const sizes = [24, 32, 40, 64, 128]
+const imageRendering = isChrome === true ? '-webkit-optimize-contrast' : 'crisp-edges'
 
 function getPos (pos, iconSize) {
   return `${pos * -1 * (iconSize + 1)}px`
@@ -18,8 +18,8 @@ export default function toSprite (
   {
     emoji,
     size = 16,
+    hiDpi = false,
     publicPath = DEFAULT_PUBLIC_PATH,
-    hiDPI = false,
     extension = '.png'
   }
 ) {
@@ -28,39 +28,48 @@ export default function toSprite (
   const [spriteCols, spriteRows] = data.spriteSizes[categoryID]
 
   size = parseInt(size)
-  let iconSize = getIconSize(size, sizes)
+  let iconSize =
+    size <= 24
+      ? 24
+      : size <= 32
+        ? 32
+        : size <= 40
+          ? 40
+          : size <= 64
+            ? 64
+            : 128
+
   let x = ''
 
   if (iconSize === 128) {
-    hiDPI = false
+    hiDpi = false
     iconSize = 64
     x = '@2x'
   }
 
-  if (hiDPI === true) {
+  if (hiDpi === true) {
     x = '@2x'
   }
+
   const scaleSize = (size / (iconSize - 1)) * (iconSize - 1)
   const backgroundPosition =
     row === void 0
       ? `${getPos(col, scaleSize)} 0`
       : `${getPos(col, scaleSize)} ${getPos(row, scaleSize)}`
-  // const backgroundSize = hiDPI === true ? '50%' : void 0
+  // const backgroundSize = hiDpi === true ? '50%' : void 0
   const bgHeight = getSize(spriteRows, scaleSize)
   const bgWidth = getSize(spriteCols, scaleSize)
   const backgroundSize = `${bgWidth} ${bgHeight}`
-  const qs = publicPath.includes('github.com') ? '?raw=true' : ''
+  const qs = publicPath === DEFAULT_PUBLIC_PATH ? '?raw=true' : ''
 
   return {
     width: scaleSize,
     height: scaleSize,
+    imageRendering,
     display: 'inline-block',
-    position: 'relative',
-    fontSize: 'inherit',
+    fontSize: 0,
     lineHeight: 1.0,
     verticalAlign: 'middle',
-    textIndent: '-9999em',
-    imageRendering: 'optimizeQuality',
     contain: 'strict',
     backgroundImage: `url(${publicPath}emojione-sprite-${iconSize}-${category}${x}${extension}${qs})`,
     backgroundSize,

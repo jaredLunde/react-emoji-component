@@ -1,47 +1,37 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import emptyObj from 'empty/object'
 import {toEmojis} from './utils'
-import FindAndReplace from './FindAndReplace'
+import walk from './walk'
 
 
-export default function createEmojisComponent ({
-  publicPath,
-  useSprites,
-  hiDPI,
-  size,
-  extension,
-  render,
-}) {
-  if (publicPath) {
-    publicPath = publicPath.endsWith('/') === false ? `${publicPath}/` : publicPath
+export default function createEmojisComponent (options = emptyObj) {
+  let publicPath = options.publicPath
+
+  if (publicPath !== void 0 && publicPath !== null) {
+    options.publicPath =
+      publicPath.endsWith('/') === false ? `${publicPath}/` : publicPath
   }
 
   function Emojis (props) {
-    return React.Children.count(props.children)
-      ? FindAndReplace({
-          replacer: toEmojis,
-          render,
-          useSprites,
-          hiDPI,
-          publicPath,
-          size,
-          extension,
-          ...props
-        })
-      : null
+    props = Object.assign({}, props)
+    const children = props.children
+    delete props.children
+
+    if (options !== emptyObj) {
+      Object.assign(props, options)
+    }
+
+    return React.Children.count(children) ? walk(children, toEmojis, props) : null
   }
 
   if (__DEV__) {
     Emojis.propTypes = {
-      publicPath: PropTypes.string,
-      useSprites: PropTypes.bool,
-      hiDPI: PropTypes.bool,
       size: PropTypes.number,
+      hiDpi: PropTypes.bool,
+      publicPath: PropTypes.string,
       extension: PropTypes.string,
-      render: PropTypes.oneOfType([
-        PropTypes.func,
-        PropTypes.instanceOf(React.Component),
-      ])
+      render: PropTypes.func
     }
   }
 
