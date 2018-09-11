@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import emptyObj from 'empty/object'
-import {toEmojis} from './utils'
 import walk from './walk'
+import {toEmojis} from './utils'
 
 
 export default function createEmojisComponent (options = emptyObj) {
