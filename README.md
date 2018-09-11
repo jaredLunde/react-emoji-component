@@ -123,9 +123,9 @@ prop.
 - options `object`
   - size `number`
     - See [Emojis](#emojis)
-  - publicPath `string`
-    - See [Emojis](#emojis)
   - hiDpi `bool`
+    - See [Emojis](#emojis)
+  - publicPath `string`
     - See [Emojis](#emojis)
   - extension `string`
     - See [Emojis](#emojis)
