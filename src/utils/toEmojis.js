@@ -6,11 +6,12 @@ import {emojis} from '../data'
 import split from './split'
 
 
-// for skipping all latin characters
-const skipRe = /[\p{L}\s]/
+// for skipping characters
+const skipRe = /[\p{L}\sA-Za-z!@$%^&()_+\-=\[\]{};':"\\|,.<>\/?]/
 
 export default function toEmojis (
-  string, {
+  string,
+  {
     render = Emoji,
     // options
     size = 16,
@@ -35,9 +36,8 @@ export default function toEmojis (
     }
     else {
       const codePoint = emojiToCodePoints(char)
-      let emoji = emojis[codePoint]
 
-      if (emoji === void 0) {
+      if (emojis[codePoint] === void 0) {
         strings += char
       }
       else {

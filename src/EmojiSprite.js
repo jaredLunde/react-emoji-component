@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Emoji from './Emoji'
 import toSprite from './utils/toSprite'
 

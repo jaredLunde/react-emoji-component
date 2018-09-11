@@ -1,6 +1,3 @@
-import emojiToCodePoints from './emojiToCodePoints'
-
-
 export default function toImage (
   codePoint,
   {
