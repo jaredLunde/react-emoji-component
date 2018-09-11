@@ -1,6 +1,6 @@
 {
   "name": "react-emoji-component",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "description": "A component for converting unicode emojis to the open EmojiOne emoji set.",
   "main": "cjs/index.js",
   "module": "es/index.js",
@@ -32,8 +32,8 @@
     "grapheme-splitter": "^1.0.3"
   },
   "peerDependencies": {
-    "prop-types": "^15.x",
-    "react": "^16.x"
+    "prop-types": "15.x",
+    "react": "16.x"
   },
   "scripts": {
     "build": "npm run build:es && npm run build:cjs && npm run prettier:es && npm run prettier:cjs",
