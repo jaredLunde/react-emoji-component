@@ -4,6 +4,7 @@
 git clone https://github.com/jaredLunde/react-emoji-component
 cd react-emoji-component
 yarn install
+yarn build
 yarn link
 
 cd examples/every-emoji
