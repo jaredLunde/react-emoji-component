@@ -55,7 +55,7 @@ toEmojis('You 👏🏻 should 👏🏻 be 👏🏻 using 👏🏻 react-emoji-co
   - This is an alternative emoji renderer for the `<Emojis render={}/>` prop.
     This component uses `<span role='img'>` elements with sprites in the
     `background-image` property.
-[`createEmojisComponent()`](#createemojiscomponentoptions)
+- [`createEmojisComponent()`](#createemojiscomponentoptions)
   - This function creates a new `<Emojis>` component based upon provided options.
     This is highly useful for configuring CDN paths and EmojiOne sprite-usage
     without having to declare those props each time you use the base `Emojis`
