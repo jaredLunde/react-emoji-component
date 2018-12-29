@@ -4,7 +4,7 @@ import Emojis, {EmojiSprite} from 'react-emoji-component'
 
 export default class App extends React.PureComponent {
   state = {
-    useSprites: true,
+    useSprites: false,
     size: 32,
     hiDpi: false,
   }
@@ -18,7 +18,7 @@ export default class App extends React.PureComponent {
           fontFamily: `"Fantasque Sans Mono", Hack, "Fira Code", monospace`,
           maxWidth: 460
         }}>
-          <Emojis size={128}>
+          <Emojis size={128} publicPath='https://cdn.jsdelivr.net/emojione/assets/3.0/png/'>
             <div>
               <h1>
                 Every emoji on the
