@@ -1,4 +1,4 @@
-export default function supportsWebP () {
+export default () => {
   if (typeof document === 'undefined') {
     return false
   }

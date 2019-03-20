@@ -15,21 +15,21 @@
   "sideEffects": false,
   "private": false,
   "devDependencies": {
-    "@babel/node": "^7.0.0",
-    "@inst-app/babel-preset-esx": "^1.0.15",
-    "@inst-app/babel-preset-react": "^1.0.4",
+    "@babel/node": "^7.2.2",
+    "@stellar-apps/babel-preset-es": "^1.0.4",
+    "@stellar-apps/babel-preset-react": "^1.0.1",
     "cross-env": "^5.2.0",
     "css": "^2.2.4",
-    "emojione-assets": "^4.0.0",
+    "emojione-assets": "^4.5.0",
     "fs-extra": "^7.0.0",
     "prettier": "^1.14.2",
     "rimraf": "^2.6.2",
-    "sharp": "^0.20.8"
+    "sharp": "^0.22.0"
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.2.0",
+    "@babel/runtime": "^7.4.0",
     "empty": "^0.10.1",
-    "grapheme-splitter": "^1.0.3"
+    "grapheme-splitter": "^1.0.4"
   },
   "peerDependencies": {
     "prop-types": "15.x",
@@ -43,7 +43,8 @@
     "prettier:es": "prettier --single-quote --no-semi --no-bracket-spacing --trailing-comma es5 --write \"es/**/*.js\"",
     "prettier:cjs": "prettier --single-quote --no-semi --no-bracket-spacing --trailing-comma es5 --write \"cjs/**/*.js\"",
     "watch:es": "yarn build:es --watch",
-    "watch:cjs": "yarn build:cjs --watch"
+    "watch:cjs": "yarn build:cjs --watch",
+    "prepublishOnly": "yarn build"
   },
   "keywords": [
     "react",

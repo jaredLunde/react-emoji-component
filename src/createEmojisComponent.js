@@ -5,7 +5,7 @@ import walk from './walk'
 import {toEmojis} from './utils'
 
 
-export default function createEmojisComponent (options = emptyObj) {
+export default (options = emptyObj) => {
   let publicPath = options.publicPath
 
   if (publicPath !== void 0 && publicPath !== null) {
@@ -26,7 +26,7 @@ export default function createEmojisComponent (options = emptyObj) {
   }
 
   if (__DEV__) {
-    Emojis.propTypes = {
+    Emojis.propTypes /* remove-proptypes*/ = {
       size: PropTypes.number,
       hiDpi: PropTypes.bool,
       publicPath: PropTypes.string,

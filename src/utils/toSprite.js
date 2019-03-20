@@ -5,13 +5,8 @@ import isChrome from './isChrome'
 const DEFAULT_PUBLIC_PATH = 'https://github.com/jaredLunde/react-emoji-component/blob/master/assets/sprites/'
 const imageRendering = isChrome === true ? '-webkit-optimize-contrast' : 'crisp-edges'
 
-function getPos (pos, iconSize) {
-  return `${pos * -1 * (iconSize + 1)}px`
-}
-
-function getSize (x, iconSize) {
-  return `${((iconSize + 1) * x )- 1}px`
-}
+const getPos = (pos, iconSize) => `${pos * -1 * (iconSize + 1)}px`
+const getSize = (x, iconSize) => `${((iconSize + 1) * x )- 1}px`
 
 export default function toSprite (
   codePoint,

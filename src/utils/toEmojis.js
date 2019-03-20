@@ -1,5 +1,3 @@
-import React from 'react'
-import GraphemeSplitter from 'grapheme-splitter'
 import emojiToCodePoints from './emojiToCodePoints'
 import Emoji from '../Emoji'
 import {emojis} from '../data'

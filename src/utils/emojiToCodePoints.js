@@ -1,7 +1,7 @@
 const cache = {}
 
 
-export default function emojiToCodePoints (uc) {
+export default uc => {
   if (cache[uc] === void 0) {
     const chars = Array.from(uc)
     const codePoints = []

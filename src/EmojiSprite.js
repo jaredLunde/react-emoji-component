@@ -3,7 +3,7 @@ import Emoji from './Emoji'
 import toSprite from './utils/toSprite'
 
 
-export default function EmojiSprite ({emoji, codePoint, style, options, ...props}) {
+const EmojiSprite = ({emoji, codePoint, style, options, ...props}) => {
   props.role = 'img'
   props['aria-label'] = emoji
   props.children = emoji
@@ -12,5 +12,7 @@ export default function EmojiSprite ({emoji, codePoint, style, options, ...props
 }
 
 if (__DEV__) {
-  EmojiSprite.propTypes = Emoji.propTypes
+  EmojiSprite.propTypes /* remove-proptypes*/ = Emoji.propTypes
 }
+
+export default EmojiSprite
