@@ -1642,11 +1642,6 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.6:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
-grapheme-splitter@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/grapheme-splitter/-/grapheme-splitter-1.0.4.tgz#9cf3a665c6247479896834af35cf1dbb4400767e"
-  integrity sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==
-
 has-flag@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-3.0.0.tgz#b5d454dc2199ae225699f3467e5a07f3b955bafd"
@@ -2751,6 +2746,11 @@ source-map@^0.5.0, source-map@^0.5.6, source-map@~0.5.0:
 source-map@^0.6.0, source-map@^0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
+
+split-graphemes@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/split-graphemes/-/split-graphemes-0.0.5.tgz#b71acb73d8c56eb7aa0164373e04f7a0a393aff0"
+  integrity sha512-xbiuBV+R0gEydOFpcSrz+6sy1Qqh250yspqQiB21Zq0sRTLQ6R3kDwgZhe/gVbWPYL9kwarjmmwXZpEMCtylXQ==
 
 split-string@^3.0.1, split-string@^3.0.2:
   version "3.1.0"
