@@ -267,4 +267,4 @@ const Emojis = createEmojisComponent({
 
 ## Attributions
 - Emoji icons provided free by [EmojiOne](https://github.com/emojione/emojione)
-- Graphemes split by [nota/split-graphemes](https://github.com/nota/split-graphemes)
+- Graphemes split by [orling/grapheme-splitter](https://github.com/orling/grapheme-splitter)

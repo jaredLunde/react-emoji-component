@@ -1,1 +1,5 @@
-export {splitGraphemes as default} from 'split-graphemes'
+import GraphemeSplitter from 'grapheme-splitter'
+
+
+const splitter = new GraphemeSplitter()
+export default splitter.splitGraphemes.bind(splitter)
