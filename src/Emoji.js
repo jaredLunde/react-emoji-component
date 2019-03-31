@@ -6,7 +6,7 @@ import toImage from './utils/toImage'
 
 const defaultImgStyle = {
   contain: 'strict',
-  verticalAlign: 'middle',
+  verticalAlign: 'text-bottom',
   imageRendering: isChrome === true ? '-webkit-optimize-contrast' : 'crisp-edges'
 }
 
