@@ -1,7 +1,11 @@
 node_modules
-.DS_Store
-*.log
 .babelrc
-scripts
-examples
 .idea
+**/*.test.js
+**/test.js
+**/testUtils.js
+.eslintrc
+.eslintignore
+.python-version
+examples
+scripts

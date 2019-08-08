@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import isChrome from './utils/isChrome'
 import toImage from './utils/toImage'
 
@@ -21,9 +20,11 @@ export default function Emoji ({emoji, codePoint, style, options, ...props}) {
 
 
 if (__DEV__) {
+  const PropTypes = require('prop-types')
   Emoji.propTypes = {
     emoji: PropTypes.string.isRequired,
     codePoint: PropTypes.string.isRequired,
+    style: PropTypes.object,
     options: PropTypes.shape({
       size: PropTypes.number,
       hiDpi: PropTypes.bool,

@@ -6,7 +6,7 @@ import split from './split'
 
 // for skipping characters
 // const skipRe = /[\p{L}\sA-Za-z!@$%^&()_+\-=\[\]{};':"\\|,.<>\/?]/
-const skipRe = /[0-9#@\p{L}\sA-Za-z!@$%^&()_+\-=\[\]{};':"\\|,.<>\/?]/
+const skipRe = /[0-9#@\p{L}\sA-Za-z!@$%^&()_+\-=[\]{};':"\\|,.<>/?]/
 
 export default function toEmojis (
   string,

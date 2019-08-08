@@ -11,7 +11,6 @@ const getSize = (x, iconSize) => `${((iconSize + 1) * x )- 1}px`
 export default function toSprite (
   codePoint,
   {
-    emoji,
     size = 16,
     hiDpi = false,
     publicPath = DEFAULT_PUBLIC_PATH,

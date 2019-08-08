@@ -1,11 +1,11 @@
 {
   "name": "react-emoji-component",
-  "version": "4.1.6",
+  "version": "4.2.0",
   "description": "A component for converting unicode emojis to the open EmojiOne emoji set.",
-  "main": "cjs/index.js",
-  "module": "es/index.js",
-  "jsnext:main": "es/index.js",
-  "esnext": "es/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
+  "jsnext:main": "dist/es/index.js",
+  "esnext": "dist/es/index.js",
   "bin": {
     "copy-emoji-assets": "assets/copyBin.js"
   },
@@ -15,37 +15,52 @@
   "sideEffects": false,
   "private": false,
   "devDependencies": {
-    "@babel/node": "^7.2.2",
+    "@babel/node": "^7.5.5",
     "@stellar-apps/babel-preset-es": "^1.0.4",
-    "@stellar-apps/babel-preset-react": "^1.0.1",
+    "@stellar-apps/babel-preset-react": "^1.0.3",
+    "babel-eslint": "^10.0.2",
     "cross-env": "^5.2.0",
     "css": "^2.2.4",
     "emojione-assets": "^4.5.0",
+    "eslint": "^6.1.0",
+    "eslint-plugin-react": "^7.14.3",
     "fs-extra": "^7.0.0",
+    "husky": "^3.0.2",
+    "lint-staged": "^9.2.1",
     "performance-now": "^2.1.0",
-    "prettier": "^1.14.2",
-    "rimraf": "^2.6.2",
-    "sharp": "^0.22.0"
+    "prettier": "^1.18.2",
+    "react": "^16.8.6",
+    "rimraf": "^2.6.3",
+    "sharp": "^0.23.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.4.0",
-    "empty": "^0.10.1",
-    "split-graphemes": "^0.0.5"
+    "@babel/runtime": "^7.5.5",
+    "empty": "^0.10.1"
   },
   "peerDependencies": {
     "prop-types": "15.x",
     "react": "16.x"
   },
   "scripts": {
-    "build": "npm run build:es && npm run build:cjs && npm run prettier:es && npm run prettier:cjs",
-    "build:es": "rimraf es && cross-env NODE_ENV=production BABEL_ENV=es babel src --out-dir es",
-    "build:cjs": "rimraf cjs && cross-env NODE_ENV=production BABEL_ENV=cjs babel src --out-dir cjs",
+    "build": "npm run build:es && npm run build:cjs",
+    "build:es": "rimraf es && cross-env NODE_ENV=production BABEL_ENV=es babel src --out-dir dist/es",
+    "build:cjs": "rimraf cjs && cross-env NODE_ENV=production BABEL_ENV=cjs babel src --out-dir dist/cjs",
     "create-emoji-data": "node scripts/createEmojiData",
-    "prettier:es": "prettier --single-quote --no-semi --no-bracket-spacing --trailing-comma es5 --write \"es/**/*.js\"",
-    "prettier:cjs": "prettier --single-quote --no-semi --no-bracket-spacing --trailing-comma es5 --write \"cjs/**/*.js\"",
+    "lint": "eslint src",
+    "prepublishOnly": "yarn lint && yarn build && yarn prettier",
+    "prettier:es": "prettier --single-quote --no-semi --no-bracket-spacing --trailing-comma es5 --write \"dist/es/**/*.js\"",
+    "prettier:cjs": "prettier --single-quote --no-semi --no-bracket-spacing --trailing-comma es5 --write \"dist/cjs/**/*.js\"",
+    "prettier": "yarn prettier:cjs && yarn prettier:es",
     "watch:es": "yarn build:es --watch",
-    "watch:cjs": "yarn build:cjs --watch",
-    "prepublishOnly": "yarn build"
+    "watch:cjs": "yarn build:cjs --watch"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint"
   },
   "keywords": [
     "react",
