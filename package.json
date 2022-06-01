@@ -31,7 +31,7 @@
     "prettier": "^1.18.2",
     "react": "^16.8.6",
     "rimraf": "^2.6.3",
-    "sharp": "^0.23.0"
+    "sharp": "^0.30.5"
   },
   "dependencies": {
     "@babel/runtime": "^7.5.5",
